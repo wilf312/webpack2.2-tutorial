@@ -12,8 +12,9 @@ module.exports = function() {
   return {
     context: path.resolve(__dirname, 'src'),
     entry: {
-      main: './main.js',
-      vendor: 'moment',
+      // main: ['./main.js'],
+      rectest: ['./rectest.js'],
+      vendor: ['moment'],
     },
     output: {
       // the output bundle
@@ -24,12 +25,27 @@ module.exports = function() {
     module: {
       rules: [
         {
-          test: /\.css$/,
-          exclude: /node_modules/,
-          loader: ExtractTextPlugin.extract({
-            loader: 'css-loader?sourceMap'
-          })
+          test: /\.js$/,
+          use: [
+            'babel-loader',
+          ],
+          exclude: /node_modules/
         },
+        {
+          test: /\.css$/,
+          use: [
+            'style-loader',
+            'css-loader?modules',
+            'postcss-loader',
+          ],
+        },
+
+        // {
+        //   test: /\.css$/,
+        //   loader: ExtractTextPlugin.extract({
+        //     loader: 'css-loader?sourceMap'
+        //   })
+        // },
         // {
         //   test: /\.ejs$/,
         //   loader: 'ejs-loader',
@@ -41,7 +57,6 @@ module.exports = function() {
         // },
       ]
     },
-    devtool: 'source-map',
     plugins: [
       new HtmlWebpackPlugin({
         filename: 'index.html',
