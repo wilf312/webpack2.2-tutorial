@@ -4,7 +4,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 
-
 // distの中身を削除
 const del = require('del')
 del(path.resolve(__dirname, 'dist') + '/*')
@@ -18,7 +17,7 @@ module.exports = function() {
     },
     output: {
       // the output bundle
-      filename: '[name].js?[chunkhash]',
+      // filename: '[name].js?[chunkhash]', // 開発と本番で振り分け
       chunkFilename: '[name].chunk.js',
       path: path.resolve(__dirname, 'dist'),
     },
