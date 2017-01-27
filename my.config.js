@@ -3,10 +3,11 @@ const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+
+
+// distの中身を削除
 const del = require('del')
 del(path.resolve(__dirname, 'dist') + '/*')
-
-
 
 module.exports = function() {
   return {
@@ -18,16 +19,28 @@ module.exports = function() {
     output: {
       // the output bundle
       filename: '[name].js?[chunkhash]',
+      chunkFilename: '[name].chunk.js',
       path: path.resolve(__dirname, 'dist'),
     },
     module: {
-      rules: [{
-        test: /\.css$/,
-        exclude: /node_modules/,
-        loader: ExtractTextPlugin.extract({
-          loader: 'css-loader?sourceMap'
-        })
-      }]
+      rules: [
+        {
+          test: /\.css$/,
+          exclude: /node_modules/,
+          loader: ExtractTextPlugin.extract({
+            loader: 'css-loader?sourceMap'
+          })
+        },
+        // {
+        //   test: /\.ejs$/,
+        //   loader: 'ejs-loader',
+        //   query: {
+        //     variable: 'data',
+        //     interpolate : '\\{\\{(.+?)\\}\\}',
+        //     evaluate : '\\[\\[(.+?)\\]\\]'
+        //   }
+        // },
+      ]
     },
     devtool: 'source-map',
     plugins: [
