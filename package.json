@@ -5,8 +5,8 @@
   "repository": {},
   "license": "MIT",
   "scripts": {
-    "start": "webpack --config my.config.js",
-    "watch": "node npm-watch.js"
+    "start": "node npm-dev.js",
+    "buidl": "node npm-build.js"
   },
   "dependencies": {
     "moment": "^2.17.1",

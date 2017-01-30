@@ -1,10 +1,17 @@
+/**
+ * 開発用途の設定
+ * ベースのwebpackの設定をもってきて、
+ * ホットリロードとHTMLの更新監視などをリアルタイムに行う設定をかいてます
+ */
+
+
+
+
 const path = require('path')
 const express = require('express')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const webpackConfig = require('./my.config')
-// console.log('webpackConfig', webpackConfig)
-
+const webpackConfig = require('./webpack.base.config')
 
 
 
